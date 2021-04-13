@@ -207,11 +207,11 @@ public class MessageConverter implements SourceMessageConverter<Struct, Struct> 
   }
 
   static Map<String, Struct> headers(BasicProperties basicProperties) {
-    final Boolean SHOULD_NOT_LOAD_HEADERS = shouldNotLoadHeaders();
+    final Boolean shouldNotLoadHeaders = shouldNotLoadHeaders();
     Map<String, Object> input = basicProperties.getHeaders();
     Map<String, Struct> results = new LinkedHashMap<>();
 
-    if (null != input && !SHOULD_NOT_LOAD_HEADERS) {
+    if (null != input && !shouldNotLoadHeaders) {
       for (Map.Entry<String, Object> kvp : input.entrySet()) {
         log.trace("headers() - key = '{}' value= '{}'", kvp.getKey(), kvp.getValue());
         final String field;

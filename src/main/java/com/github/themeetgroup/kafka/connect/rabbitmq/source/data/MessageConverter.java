@@ -202,7 +202,7 @@ public class MessageConverter implements SourceMessageConverter<Struct, Struct> 
   }
 
   static Boolean shouldNotLoadHeaders(){
-    String environValue = System.getenv("RQM_CONNECTOR_SHOULD_NOT_LOAD_HEADERS");
+    String environValue = System.getenv("RMQ_CONNECTOR_SHOULD_NOT_LOAD_HEADERS");
     return Objects.equals("true", environValue);
   }
 

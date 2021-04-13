@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -200,10 +201,17 @@ public class MessageConverter implements SourceMessageConverter<Struct, Struct> 
     FIELD_LOOKUP = ImmutableMap.copyOf(fieldLookup);
   }
 
+  static Boolean shouldNotLoadHeaders(){
+    String environValue = System.getenv("RMQ_CONNECTOR_SHOULD_NOT_LOAD_HEADERS");
+    return Objects.equals("true", environValue);
+  }
+
   static Map<String, Struct> headers(BasicProperties basicProperties) {
+    final Boolean SHOULD_NOT_LOAD_HEADERS = shouldNotLoadHeaders();
     Map<String, Object> input = basicProperties.getHeaders();
     Map<String, Struct> results = new LinkedHashMap<>();
-    if (null != input) {
+
+    if (null != input && !SHOULD_NOT_LOAD_HEADERS) {
       for (Map.Entry<String, Object> kvp : input.entrySet()) {
         log.trace("headers() - key = '{}' value= '{}'", kvp.getKey(), kvp.getValue());
         final String field;

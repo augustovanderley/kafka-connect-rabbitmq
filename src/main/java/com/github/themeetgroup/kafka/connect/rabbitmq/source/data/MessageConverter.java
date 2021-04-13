@@ -201,7 +201,7 @@ public class MessageConverter implements SourceMessageConverter<Struct, Struct> 
     FIELD_LOOKUP = ImmutableMap.copyOf(fieldLookup);
   }
 
-  static Boolean shouldNotLoadHeaders(){
+  static Boolean shouldNotLoadHeaders() {
     String environValue = System.getenv("RMQ_CONNECTOR_SHOULD_NOT_LOAD_HEADERS");
     return Objects.equals("true", environValue);
   }

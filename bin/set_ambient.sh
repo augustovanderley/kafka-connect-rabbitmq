@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #CREATE RABBITMQ QUEUES, EXCHANGES AND BIND THEM
 curl -i -u guest:guest -H "content-type:application/json" \
 -XPUT -d'{"vhost":"/","durable":true}' \

@@ -439,3 +439,12 @@ curl -s -X PUT -H 'Content-Type: application/json' --data @connector.json http:/
 ```
 
 
+# For Developers
+
+You should have Java 8 and maven installed. 
+
+Run `docker-compose up` to build and start containers. 
+
+Run `./bin/set_ambient.sh` to create queues, topics and connectors.
+
+Check if everything is working by checking `localhost:15672`

@@ -1,0 +1,18 @@
+{
+  "name": "RabbitMQTestSourceConnector",
+  "config": {
+    "connector.class": "com.github.themeetgroup.kafka.connect.rabbitmq.source.RabbitMQSourceConnector",
+    "tasks.max": "3",
+    "kafka.topic": "test_topic",
+    "rabbitmq.host": "rabbitmq",
+    "rabbitmq.port": "5672",
+    "rabbitmq.virtual.host": "/",
+    "rabbitmq.queue": "source_queue",
+    "rabbitmq.username": "guest",
+    "rabbitmq.password": "guest",
+    "rabbitmq.prefetch.count": 1000,
+    "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "message.converter": "com.github.themeetgroup.kafka.connect.rabbitmq.source.data.BytesSourceMessageConverter"
+  }
+}

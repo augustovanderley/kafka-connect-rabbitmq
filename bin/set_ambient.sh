@@ -17,7 +17,10 @@ http://localhost:15672/api/exchanges/%2f/sink_exchange
 
 # CREATE KAFKA TOPIC
 
-docker exec broker kafka-topics --create --bootstrap-server localhost:29092 --topic test_topic
+docker exec broker kafka-topics --create --if-not-exists --zookeeper zookeeper:2181 \
+--replication-factor 1 --partitions 1 \
+--topic test_topic
+
 
 # CREATE SOURCE AND SINK CONNECTORS
 
@@ -25,6 +28,6 @@ curl -X POST 'localhost:8083/connectors' \
 --header 'Content-Type: application/json' \
 -d @tests/rabbit_source.json
 
-#curl -X POST 'kafka-connect:8083/connectors' \
-#--header 'Content-Type: application/json' \
-#-d @tests/rabbit_sink.json
+curl -X POST 'localhost:8083/connectors' \
+--header 'Content-Type: application/json' \
+-d @tests/rabbit_sink.json
